@@ -8,13 +8,13 @@
 # modification, are permitted provided that the following conditions are met:
 #
 #   * Redistributions of source code must retain the above copyright notice,
-#     this list of conditions, and the following disclaimer.
+#	 this list of conditions, and the following disclaimer.
 #   * Redistributions in binary form must reproduce the above copyright notice,
-#     this list of conditions, and the following disclaimer in the
-#     documentation and/or other materials provided with the distribution.
+#	 this list of conditions, and the following disclaimer in the
+#	 documentation and/or other materials provided with the distribution.
 #   * Neither the name of the author of this software nor the name of
-#     contributors to this software may be used to endorse or promote products
-#     derived from this software without specific prior written consent.
+#	 contributors to this software may be used to endorse or promote products
+#	 derived from this software without specific prior written consent.
 #
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
@@ -1601,7 +1601,7 @@ class ChanTracker(callbacks.Plugin,plugins.ChannelDBHandler):
 	def vacuum (self,irc,msg,args):
 		"""VACUUM the database"""
 		db = self.getDb(irc.network)
-                c = db.cursor()
+				c = db.cursor()
 		c.execute('VACUUM')
 		c.close()
 		irc.replySuccess()
@@ -2710,7 +2710,7 @@ class ChanTracker(callbacks.Plugin,plugins.ChannelDBHandler):
 								mode = mode[0]
 							duration = self.registryValue('%sDuration' % kind,channel=channel)
 							comment = self.registryValue('%sComment' % kind,channel=channel)
-                            
+							
 							self._act(irc,channel,mode,best,duration,comment)
 							self.forceTickle = True
 				if not chan.isWrong(best):
@@ -3062,9 +3062,9 @@ class ChanTracker(callbacks.Plugin,plugins.ChannelDBHandler):
 			if self.registryValue('logChannel',channel=channel) in irc.state.channels:
 				self._logChan(irc,channel,'[%s] debug %s %s %s %s' % (channel,mode,mask,duration,reason))
 			return
-        if mode == 'q':
-            mode = 'b'
-            mask = 'm:' + mask
+		if mode == 'q':
+			mode = 'b'
+			mask = 'm:' + mask
 		if mode in self.registryValue('modesToAsk',channel=channel) or mode in self.registryValue('modesToAskWhenOpped',channel=channel):
 			i = self.getIrc(irc)
 			if i.add(irc,channel,mode,mask,duration,irc.prefix,self.getDb(irc.network)):
