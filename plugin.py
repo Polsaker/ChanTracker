@@ -1660,7 +1660,7 @@ class ChanTracker(callbacks.Plugin,plugins.ChannelDBHandler):
 					targets.append(item)
 		n = 0
 		for item in targets:
-			if mode = "q":
+			if mode == "q":
 				mode = "b"
 				item = "m:" + item
 			r = self.getIrcdMode(irc,mode,item)
@@ -1686,7 +1686,7 @@ class ChanTracker(callbacks.Plugin,plugins.ChannelDBHandler):
 		count = 0
 		if mode in self.registryValue('modesToAsk',channel=channel) or mode in self.registryValue('modesToAskWhenOpped',channel=channel):
 			for item in items:
-				if mode = "q":
+				if mode == "q":
 					mode = "b"
 					item = "m:" + item
 				if ircutils.isUserHostmask(item) or item.find(self.getIrcdExtbansPrefix(irc)) != -1:
@@ -1718,7 +1718,7 @@ class ChanTracker(callbacks.Plugin,plugins.ChannelDBHandler):
 				elif msg.prefix == irc.prefix and self.registryValue('announceBotEdit',channel=channel):
 					f = self._logChan
 			for item in targets:
-				if mode = "q":
+				if mode == "q":
 					mode = "b"
 					item = "m:" + item
 				r = self.getIrcdMode(irc,mode,item)
