@@ -2710,6 +2710,7 @@ class ChanTracker(callbacks.Plugin,plugins.ChannelDBHandler):
 								mode = mode[0]
 							duration = self.registryValue('%sDuration' % kind,channel=channel)
 							comment = self.registryValue('%sComment' % kind,channel=channel)
+                            
 							self._act(irc,channel,mode,best,duration,comment)
 							self.forceTickle = True
 				if not chan.isWrong(best):
@@ -3061,6 +3062,9 @@ class ChanTracker(callbacks.Plugin,plugins.ChannelDBHandler):
 			if self.registryValue('logChannel',channel=channel) in irc.state.channels:
 				self._logChan(irc,channel,'[%s] debug %s %s %s %s' % (channel,mode,mask,duration,reason))
 			return
+        if mode == 'q':
+            mode = 'b'
+            mask = 'm:' + mask
 		if mode in self.registryValue('modesToAsk',channel=channel) or mode in self.registryValue('modesToAskWhenOpped',channel=channel):
 			i = self.getIrc(irc)
 			if i.add(irc,channel,mode,mask,duration,irc.prefix,self.getDb(irc.network)):
